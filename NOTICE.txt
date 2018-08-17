@@ -1,0 +1,13 @@
+AWS SAM Java REST Sample Application
+Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+This product includes software developed at
+Amazon Web Services, Inc. (http://aws.amazon.com/)
+
+**********************
+THIRD PARTY COMPONENTS
+**********************
+This software includes third party software subject to the following copyrights:
+- google-cloud-java: Google Cloud Client Library for Java - Copyright 2016 Google LLC. Apache License 2.0.
+
+The licenses for these third party components are included in LICENSE.txt.

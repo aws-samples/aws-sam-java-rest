@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    sam-app
+
+    Sample SAM Template for sam-app
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+    Function:
+        Timeout: 20
+        Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+          Variables:
+            TABLE_NAME:
+            ENDPOINT_OVERRIDE:
+
+Resources:
+  GetOrderFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.GetOrderHandler::handleRequest
+      Runtime: java8
+      Events:
+        GetOrder:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders/{order_id}
+            Method: get
+  GetOrdersFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.GetOrdersHandler::handleRequest
+      Runtime: java8
+      Events:
+        GetOrders:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders
+            Method: get
+  UpdateOrderFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.UpdateOrderHandler::handleRequest
+      Runtime: java8
+      Events:
+        UpdateOrder:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders/{order_id}
+            Method: post
+  DeleteOrderFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.DeleteOrderHandler::handleRequest
+      Runtime: java8
+      Events:
+        DeleteOrder:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders/{order_id}
+            Method: delete
+  CreateOrderFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.CreateOrderHandler::handleRequest
+      Runtime: java8
+      Events:
+        CreateOrder:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /orders
+            Method: post
+  CreateOrdersTableFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: target/aws-sam-java-rest-1.0.0.jar
+      Handler: com.amazonaws.handler.CreateOrdersTableHandler::handleRequest
+      Runtime: java8
+      Events:
+        CreateOrdersTable:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /_create_orders_table
+            Method: post
+
+Outputs:
+    HelloWorldApi:
+      Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+
+    GetOrderFunction:
+      Description: "GetOrder Lambda Function ARN"
+      Value: !GetAtt GetOrderFunction.Arn
+
+    GetOrdersFunction:
+      Description: "GetOrders Lambda Function ARN"
+      Value: !GetAtt GetOrdersFunction.Arn
+
+    UpdateOrderFunction:
+      Description: "UpdateOrder Lambda Function ARN"
+      Value: !GetAtt UpdateOrderFunction.Arn
+
+    DeleteOrderFunction:
+      Description: "DeleteOrder Lambda Function ARN"
+      Value: !GetAtt DeleteOrderFunction.Arn
+
+    CreateOrderFunction:
+      Description: "CreateOrder Lambda Function ARN"
+      Value: !GetAtt CreateOrderFunction.Arn
+
+    CreateOrdersTableFunction:
+      Description: "CreateOrdersTable Lambda Function ARN"
+      Value: !GetAtt CreateOrdersTableFunction.Arn
