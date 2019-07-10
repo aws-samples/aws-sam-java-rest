@@ -20,7 +20,6 @@ package com.amazonaws.dao;
 import com.amazonaws.exception.CouldNotCreateOrderException;
 import com.amazonaws.exception.OrderDoesNotExistException;
 import com.amazonaws.exception.TableDoesNotExistException;
-import com.amazonaws.exception.TableExistsException;
 import com.amazonaws.exception.UnableToDeleteException;
 import com.amazonaws.exception.UnableToUpdateException;
 import com.amazonaws.model.Order;
@@ -28,22 +27,16 @@ import com.amazonaws.model.OrderPage;
 import com.amazonaws.model.request.CreateOrderRequest;
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition;
+
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.ConditionalCheckFailedException;
-import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
 import software.amazon.awssdk.services.dynamodb.model.DeleteItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.DeleteItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
-import software.amazon.awssdk.services.dynamodb.model.KeySchemaElement;
-import software.amazon.awssdk.services.dynamodb.model.KeyType;
-import software.amazon.awssdk.services.dynamodb.model.ProvisionedThroughput;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
-import software.amazon.awssdk.services.dynamodb.model.ResourceInUseException;
 import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 import software.amazon.awssdk.services.dynamodb.model.ReturnValue;
-import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType;
 import software.amazon.awssdk.services.dynamodb.model.ScanRequest;
 import software.amazon.awssdk.services.dynamodb.model.ScanResponse;
 import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
@@ -82,31 +75,6 @@ public class OrderDao {
         this.dynamoDb = dynamoDb;
         this.tableName = tableName;
         this.pageSize = pageSize;
-    }
-
-    /**
-     * Creates an orders table in DynamoDB.
-     */
-    public void createOrdersTable() {
-        try {
-            dynamoDb.createTable(CreateTableRequest.builder()
-                    .tableName(tableName)
-                    .provisionedThroughput(ProvisionedThroughput.builder()
-                            .readCapacityUnits(5L)
-                            .writeCapacityUnits(5L)
-                            .build())
-                    .keySchema(KeySchemaElement.builder()
-                            .attributeName(ORDER_ID)
-                            .keyType(KeyType.HASH)
-                            .build())
-                    .attributeDefinitions(AttributeDefinition.builder()
-                            .attributeName(ORDER_ID)
-                            .attributeType(ScalarAttributeType.S)
-                            .build())
-                    .build());
-        } catch (ResourceInUseException e) {
-            throw new TableExistsException("Orders table already exists");
-        }
     }
 
     /**

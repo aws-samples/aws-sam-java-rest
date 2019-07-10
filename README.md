@@ -21,7 +21,6 @@ management.
 │   │       ├── com.amazonaws.exception           <-- Source code for custom exceptions
 │   │       ├── com.amazonaws.handler             <-- Source code for lambda functions
 │   │       │   ├── CreateOrderHandler.java       <-- Lambda function code for creating orders
-│   │       │   ├── CreateOrdersTableHandler.java <-- Lambda function code for creating the orders table
 │   │       │   ├── DeleteOrderHandler.java       <-- Lambda function code for deleting orders
 │   │       │   ├── GetOrderHandler.java          <-- Lambda function code for getting one order
 │   │       │   ├── GetOrdersHandler.java         <-- Lambda function code for getting a page of orders
