@@ -9,6 +9,8 @@ management.
 ├── README.md                               <-- This instructions file
 ├── LICENSE.txt                             <-- Apache Software License 2.0
 ├── NOTICE.txt                              <-- Copyright notices
+└── postman                                 <-- Postman scripts
+│   └── requests.postman_collection.json    <-- Requests to create/read/update/delete orders
 ├── pom.xml                                 <-- Java dependencies, Docker integration test orchestration
 ├── src
 │   ├── main
