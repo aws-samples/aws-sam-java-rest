@@ -9,6 +9,8 @@ management.
 ├── README.md                               <-- This instructions file
 ├── LICENSE.txt                             <-- Apache Software License 2.0
 ├── NOTICE.txt                              <-- Copyright notices
+└── postman                                 <-- Postman scripts
+│   └── requests.postman_collection.json    <-- Requests to create/read/update/delete orders
 ├── pom.xml                                 <-- Java dependencies, Docker integration test orchestration
 ├── src
 │   ├── main
@@ -60,6 +62,7 @@ management.
 * [Maven](https://maven.apache.org/install.html)
 * [SAM CLI](https://github.com/awslabs/aws-sam-cli)
 * [Python 3](https://docs.python.org/3/)
+* [Lombok](https://projectlombok.org/) plugin for your IDE
 
 ## Setup process
 
@@ -76,7 +79,7 @@ mvn package
 **Invoking function locally through local API Gateway**
 1. Start DynamoDB Local in a Docker container. `docker run -p 8000:8000 amazon/dynamodb-local`
 2. Start the SAM local API.
- - On a Mac: `sam local start-api --env-vars src/test/resources/test_environment_mac.json`.
+ - On a Mac: `sam local start-api --env-vars src/test/resources/test_environment_mac.json`
  - On Windows: `sam local start-api --env-vars src/test/resources/test_environment_windows.json`
  - On Linux: `sam local start-api --env-vars src/test/resources/test_environment_linux.json`
 
