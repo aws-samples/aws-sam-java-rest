@@ -23,7 +23,7 @@ Resources:
       Handler: com.amazonaws.handler.GetOrderHandler::handleRequest
       Runtime: java8
       Policies:
-        - DynamoDBCrudPolicy:
+        - DynamoDBReadPolicy:
             TableName: !Ref OrdersTable
       Events:
         GetOrder:
@@ -38,7 +38,7 @@ Resources:
       Handler: com.amazonaws.handler.GetOrdersHandler::handleRequest
       Runtime: java8
       Policies:
-        - DynamoDBCrudPolicy:
+        - DynamoDBReadPolicy:
             TableName: !Ref OrdersTable
       Events:
         GetOrders:
