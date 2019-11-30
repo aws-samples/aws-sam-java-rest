@@ -74,7 +74,7 @@ mvn package
 ### Local development
 
 **Invoking function locally through local API Gateway**
-1. Start DynamoDB Local in a Docker container. `docker run -p 8000:8000 amazon/dynamodb-local`
+1. Start DynamoDB Local in a Docker container. `docker-compose up`
 2. Start the SAM local API.
  - On a Mac: `sam local start-api --env-vars src/test/resources/test_environment_mac.json`.
  - On Windows: `sam local start-api --env-vars src/test/resources/test_environment_windows.json`
@@ -179,7 +179,7 @@ python3 src/test/resources/api_tests.py 3
 ```
 
 The number that follows the test script name is the number of orders to create in the
-test. For these tests to work, you must start DynamoDB Local (`docker run -p 8000:8000 amazon/dynamodb-local`)
+test. For these tests to work, you must start DynamoDB Local (`docker-compose up`)
 and then start SAM Local with the appropriate CLI command (for example,
 `sam local start-api --env-vars src/test/resources/test_environment_mac.json`).
 

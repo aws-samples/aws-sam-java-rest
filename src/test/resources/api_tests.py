@@ -26,20 +26,6 @@ BASE_URL = 'http://localhost:3000/orders'
 
 NUM_ORDERS = int(sys.argv[1])
 
-def test_create_table():
-  print('TEST: CREATE TABLE')
-  r = requests.post('http://localhost:3000/_create_orders_table')
-  try:
-    response = r.text
-    print(response)
-    print('\nAttempting to parse JSON...')
-    print(json.loads(response), end='\n\n')
-  except Exception as e:
-    frame = inspect.currentframe()
-    print(inspect.getframeinfo(frame).function + ' failed.')
-    print(e)
-
-
 def test_create_order():
   print('\n\nTEST: CREATING ORDER')
   r = requests.post(BASE_URL, data=json.dumps({
@@ -132,9 +118,6 @@ def test_delete_order():
       frame = inspect.currentframe()
       print(inspect.getframeinfo(frame).function + ' failed.')
       print(e)
-
-
-test_create_table()
 
 for i in range(NUM_ORDERS):
   test_create_order()

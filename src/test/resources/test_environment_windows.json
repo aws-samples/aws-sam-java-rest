@@ -1,26 +1,20 @@
 {
     "GetOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     },
     "GetOrdersFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     },
     "UpdateOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     },
     "DeleteOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     },
     "CreateOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     },
     "CreateOrdersTableFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
+        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000"
     }
 }

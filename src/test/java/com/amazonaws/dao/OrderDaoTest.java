@@ -20,7 +20,6 @@ package com.amazonaws.dao;
 import com.amazonaws.exception.CouldNotCreateOrderException;
 import com.amazonaws.exception.OrderDoesNotExistException;
 import com.amazonaws.exception.TableDoesNotExistException;
-import com.amazonaws.exception.TableExistsException;
 import com.amazonaws.exception.UnableToDeleteException;
 import com.amazonaws.exception.UnableToUpdateException;
 import com.amazonaws.model.Order;
@@ -30,19 +29,15 @@ import org.junit.Test;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.ConditionalCheckFailedException;
-import software.amazon.awssdk.services.dynamodb.model.CreateTableRequest;
-import software.amazon.awssdk.services.dynamodb.model.CreateTableResponse;
 import software.amazon.awssdk.services.dynamodb.model.DeleteItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.DeleteItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
-import software.amazon.awssdk.services.dynamodb.model.ResourceInUseException;
 import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 import software.amazon.awssdk.services.dynamodb.model.ScanRequest;
 import software.amazon.awssdk.services.dynamodb.model.ScanResponse;
-import software.amazon.awssdk.services.dynamodb.model.TableDescription;
 import software.amazon.awssdk.services.dynamodb.model.UpdateItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.UpdateItemResponse;
 
@@ -61,20 +56,6 @@ public class OrderDaoTest {
     private static final String ORDER_ID = "some order id";
     private DynamoDbClient dynamoDb = mock(DynamoDbClient.class);
     private OrderDao sut = new OrderDao(dynamoDb, "table_name", 10);
-
-    @Test
-    public void createOrdersTable_whenTableDoesNotExist_succeeds() {
-        doReturn(CreateTableResponse.builder()
-                .tableDescription(TableDescription.builder()
-                        .tableName("table_name").build()).build()).when(dynamoDb).createTable(any(CreateTableRequest.class));
-        sut.createOrdersTable();
-    }
-
-    @Test(expected = TableExistsException.class)
-    public void createOrdersTable_whenTableExists_throwsUnableToCreateTableException() {
-        doThrow(ResourceInUseException.builder().message("d").build()).when(dynamoDb).createTable(any(CreateTableRequest.class));
-        sut.createOrdersTable();
-    }
 
     @Test(expected = IllegalArgumentException.class)
     public void createOrder_whenRequestNull_throwsIllegalArgumentException() {
