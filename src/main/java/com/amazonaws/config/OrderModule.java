@@ -37,7 +37,7 @@ public class OrderModule {
     @Provides
     @Named("tableName")
     String tableName() {
-        return Optional.ofNullable(System.getenv("TABLE_NAME")).orElse("order_table");
+        return Optional.ofNullable(System.getenv("TABLE_NAME")).orElse("orders_table");
     }
 
     @Singleton

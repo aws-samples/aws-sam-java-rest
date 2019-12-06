@@ -37,7 +37,7 @@ import javax.inject.Inject;
  * the class name so that it does not get picked up by failsafe.
  */
 public abstract class OrderHandlerTestBase {
-    private static final String TABLE_NAME = "order_table";
+    private static final String TABLE_NAME = "orders_table";
 
     private final OrderTestComponent orderComponent;
 

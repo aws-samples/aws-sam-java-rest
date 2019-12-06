@@ -12,7 +12,7 @@ Globals:
         MemorySize: 512
         Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
           Variables:
-            TABLE_NAME: "order_table"
+            TABLE_NAME: !Ref OrdersTable
             ENDPOINT_OVERRIDE: ""
 
 Resources:
@@ -95,7 +95,7 @@ Resources:
   OrdersTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: order_table
+      TableName: orders_table
       AttributeDefinitions:
         - AttributeName: orderId
           AttributeType: S
