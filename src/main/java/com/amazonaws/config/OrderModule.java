@@ -22,8 +22,6 @@ import com.amazonaws.dao.OrderDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dagger.Module;
 import dagger.Provides;
-import software.amazon.awssdk.core.client.builder.SdkClientBuilder;
-import software.amazon.awssdk.core.internal.http.loader.DefaultSdkAsyncHttpClientBuilder;
 import software.amazon.awssdk.http.apache.ApacheHttpClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder;
@@ -39,7 +37,7 @@ public class OrderModule {
     @Provides
     @Named("tableName")
     String tableName() {
-        return Optional.ofNullable(System.getenv("TABLE_NAME")).orElse("order_table");
+        return Optional.ofNullable(System.getenv("TABLE_NAME")).orElse("orders_table");
     }
 
     @Singleton

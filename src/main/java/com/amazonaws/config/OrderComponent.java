@@ -17,9 +17,7 @@
 
 package com.amazonaws.config;
 
-import com.amazonaws.dao.OrderDao;
 import com.amazonaws.handler.CreateOrderHandler;
-import com.amazonaws.handler.CreateOrdersTableHandler;
 import com.amazonaws.handler.DeleteOrderHandler;
 import com.amazonaws.handler.GetOrderHandler;
 import com.amazonaws.handler.GetOrdersHandler;
@@ -31,9 +29,6 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {OrderModule.class})
 public interface OrderComponent {
-    OrderDao provideOrderDao();
-
-    void inject(CreateOrdersTableHandler requestHandler);
 
     void inject(CreateOrderHandler requestHandler);
 

@@ -18,9 +18,5 @@
   "CreateOrderFunction": {
     "ENDPOINT_OVERRIDE": "http://127.0.0.1:8000",
     "TABLE_NAME": "orders_table"
-  },
-  "CreateOrdersTableFunction": {
-    "ENDPOINT_OVERRIDE": "http://127.0.0.1:8000",
-    "TABLE_NAME": "orders_table"
   }
 }

@@ -18,9 +18,5 @@
     "CreateOrderFunction": {
         "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
         "TABLE_NAME": "orders_table"
-    },
-    "CreateOrdersTableFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.windows.localhost:8000",
-        "TABLE_NAME": "orders_table"
     }
 }

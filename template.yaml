@@ -12,7 +12,7 @@ Globals:
         MemorySize: 512
         Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
           Variables:
-            TABLE_NAME: "order_table"
+            TABLE_NAME: !Ref OrdersTable
             ENDPOINT_OVERRIDE: ""
 
 Resources:
@@ -24,7 +24,7 @@ Resources:
       Runtime: java8
       Policies:
         - DynamoDBReadPolicy:
-            TableName: order_table
+            TableName: !Ref OrdersTable
       Events:
         GetOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -39,7 +39,7 @@ Resources:
       Runtime: java8
       Policies:
         - DynamoDBReadPolicy:
-            TableName: order_table
+            TableName: !Ref OrdersTable
       Events:
         GetOrders:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -54,7 +54,7 @@ Resources:
       Runtime: java8
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: order_table
+            TableName: !Ref OrdersTable
       Events:
         UpdateOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -69,7 +69,7 @@ Resources:
       Runtime: java8
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: order_table
+            TableName: !Ref OrdersTable
       Events:
         DeleteOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -84,27 +84,25 @@ Resources:
       Runtime: java8
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: order_table
+            TableName: !Ref OrdersTable
       Events:
         CreateOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /orders
             Method: post
-  CreateOrdersTableFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+
+  OrdersTable:
+    Type: AWS::DynamoDB::Table
     Properties:
-      CodeUri: target/aws-sam-java-rest-1.0.0.jar
-      Handler: com.amazonaws.handler.CreateOrdersTableHandler::handleRequest
-      Runtime: java8
-      Policies:
-        - AmazonDynamoDBFullAccess
-      Events:
-        CreateOrdersTable:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /_create_orders_table
-            Method: post
+      TableName: orders_table
+      AttributeDefinitions:
+        - AttributeName: orderId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: orderId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
 
 Outputs:
     HelloWorldApi:
@@ -130,7 +128,3 @@ Outputs:
     CreateOrderFunction:
       Description: "CreateOrder Lambda Function ARN"
       Value: !GetAtt CreateOrderFunction.Arn
-
-    CreateOrdersTableFunction:
-      Description: "CreateOrdersTable Lambda Function ARN"
-      Value: !GetAtt CreateOrdersTableFunction.Arn
