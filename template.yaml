@@ -9,10 +9,11 @@ Description: >
 Globals:
     Function:
         Timeout: 20
+        MemorySize: 512
         Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
           Variables:
-            TABLE_NAME:
-            ENDPOINT_OVERRIDE:
+            TABLE_NAME: "order_table"
+            ENDPOINT_OVERRIDE: ""
 
 Resources:
   GetOrderFunction:
@@ -21,6 +22,9 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.GetOrderHandler::handleRequest
       Runtime: java8
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: order_table
       Events:
         GetOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -33,6 +37,9 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.GetOrdersHandler::handleRequest
       Runtime: java8
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: order_table
       Events:
         GetOrders:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -45,6 +52,9 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.UpdateOrderHandler::handleRequest
       Runtime: java8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: order_table
       Events:
         UpdateOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -57,6 +67,9 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.DeleteOrderHandler::handleRequest
       Runtime: java8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: order_table
       Events:
         DeleteOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -69,6 +82,9 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.CreateOrderHandler::handleRequest
       Runtime: java8
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: order_table
       Events:
         CreateOrder:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -81,6 +97,8 @@ Resources:
       CodeUri: target/aws-sam-java-rest-1.0.0.jar
       Handler: com.amazonaws.handler.CreateOrdersTableHandler::handleRequest
       Runtime: java8
+      Policies:
+        - AmazonDynamoDBFullAccess
       Events:
         CreateOrdersTable:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
