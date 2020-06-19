@@ -33,7 +33,7 @@ public class CreateOrderHandlerTest {
     public void handleRequest_whenCreateOrderInputStreamEmpty_puts400InOutputStream() throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         sut.handleRequest(new ByteArrayInputStream(new byte[0]), os, TestContext.builder().build());
-        assertTrue(os.toString().contains("Invalid JSON"));
+        assertTrue(os.toString().contains("Body was null"));
         assertTrue(os.toString().contains("400"));
     }
 
