@@ -33,7 +33,7 @@ public class DeleteOrderHandlerTest {
     public void handleRequest_whenDeleteOrderInputStreamEmpty_puts400InOutputStream() throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         sut.handleRequest(new ByteArrayInputStream(new byte[0]), os, TestContext.builder().build());
-        assertTrue(os.toString().contains("Invalid JSON"));
+        assertTrue(os.toString().contains("order_id was not set"));
         assertTrue(os.toString().contains("400"));
     }
 

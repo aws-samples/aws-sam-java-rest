@@ -52,7 +52,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <aws.lambda.java.core.version>1.1.0</aws.lambda.java.core.version>
-        <aws.sdk.version>2.0.0-preview-11</aws.sdk.version>
+        <aws.sdk.version>2.13.39</aws.sdk.version>
         <dynamodblocal.version>1.11.119</dynamodblocal.version>
         <lombok.version>1.18.2</lombok.version>
         <dagger.version>2.16</dagger.version>
@@ -76,17 +76,17 @@
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>dynamodb</artifactId>
             <version>${aws.sdk.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>apache-client</artifactId>
             <version>${aws.sdk.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.dagger</groupId>
