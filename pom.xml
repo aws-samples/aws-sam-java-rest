@@ -51,8 +51,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-        <aws.lambda.java.core.version>1.1.0</aws.lambda.java.core.version>
-        <aws.sdk.version>2.0.0-preview-11</aws.sdk.version>
+        <aws.lambda.java.core.version>1.2.1</aws.lambda.java.core.version>
+        <aws.sdk.version>2.13.39</aws.sdk.version>
         <dynamodblocal.version>1.11.119</dynamodblocal.version>
         <lombok.version>1.18.2</lombok.version>
         <dagger.version>2.16</dagger.version>
@@ -124,6 +124,10 @@
                     <artifactId>ion-java</artifactId>
                     <groupId>software.amazon.ion</groupId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
     </dependencies>
@@ -143,12 +147,12 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
-                <version>4.1.26.Final</version>
+                <version>4.1.46.Final</version>
             </dependency>
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-handler</artifactId>
-                <version>4.1.26.Final</version>
+                <version>4.1.46.Final</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
