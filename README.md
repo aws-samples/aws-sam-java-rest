@@ -89,6 +89,7 @@ docker run -it --rm -v %cd%:/home/dynamodblocal/data -p 8000:8000 amazon/dynamod
 
 If the previous command ran successfully you should now be able to hit the following local endpoint to
 invoke the functions rooted at `http://localhost:3000/orders`
+4. To test APIs' in Postman, import Collection from `src/resources/postman/collection.json`
 
 **SAM CLI** is used to emulate both Lambda and API Gateway locally and uses our `template.yaml` to
 understand how to bootstrap this environment (runtime, where the source code is, etc.) - The
