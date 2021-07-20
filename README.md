@@ -74,7 +74,13 @@ mvn package
 ### Local development
 
 **Invoking function locally through local API Gateway**
-1. Start DynamoDB Local in a Docker container. `docker run -p 8000:8000 amazon/dynamodb-local`
+1. Start DynamoDB Local in a Docker container. 
+`docker run -p 8000:8000 amazon/dynamodb-local`
+
+[Issue 1](https://github.com/aws-samples/aws-sam-java-rest/issues/1) Here is another example, if you want to play around the container 
+```
+docker run -it --rm -v %cd%:/home/dynamodblocal/data -p 8000:8000 amazon/dynamodb-local -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -dbPath ./data
+```
 2. Create the DynamoDB table. `aws dynamodb create-table --table-name orders_table --attribute-definitions AttributeName=orderId,AttributeType=S --key-schema AttributeName=orderId,KeyType=HASH --billing-mode PAY_PER_REQUEST --endpoint-url http://localhost:8000`
 3. Start the SAM local API.
  - On a Mac: `sam local start-api --env-vars src/test/resources/test_environment_mac.json`

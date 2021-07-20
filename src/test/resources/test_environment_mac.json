@@ -1,22 +1,22 @@
 {
     "GetOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "ENDPOINT_OVERRIDE": "http://host.docker.internal:8000",
         "TABLE_NAME": "orders_table"
     },
     "GetOrdersFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "ENDPOINT_OVERRIDE": "http://host.docker.internal:8000",
         "TABLE_NAME": "orders_table"
     },
     "UpdateOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "ENDPOINT_OVERRIDE": "http://host.docker.internal:8000",
         "TABLE_NAME": "orders_table"
     },
     "DeleteOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "ENDPOINT_OVERRIDE": "http://host.docker.internal:8000",
         "TABLE_NAME": "orders_table"
     },
     "CreateOrderFunction": {
-        "ENDPOINT_OVERRIDE": "http://docker.for.mac.localhost:8000",
+        "ENDPOINT_OVERRIDE": "http://host.docker.internal:8000",
         "TABLE_NAME": "orders_table"
     }
 }
