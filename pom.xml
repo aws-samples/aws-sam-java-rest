@@ -62,7 +62,7 @@
         <failsafe.plugin.version>2.22.0</failsafe.plugin.version>
         <findbugs.maven.plugin.version>3.0.5</findbugs.maven.plugin.version>
         <maven.enforcer.plugin.version>3.0.0-M2</maven.enforcer.plugin.version>
-        <jacoco.maven.plugin.version>0.8.1</jacoco.maven.plugin.version>
+        <jacoco.maven.plugin.version>0.8.5</jacoco.maven.plugin.version>
         <docker.maven.plugin.version>0.26.1</docker.maven.plugin.version>
     </properties>
 
